@@ -12,6 +12,11 @@ assert.equal('⁵', five.upHigh(), 'An up high five should be a superscripted 5'
 assert.equal('₅', five.downLow(), 'A down low five should be a subscripted 5');
 assert.equal('V', five.roman(), 'A roman five should be a V');
 
+assert.equal(five.s(), 55555)
+assert.equal(five.s(4), 5555)
+assert.equal(five.next(), 6)
+assert.equal(five.previous(), 4)
+assert.equal(five.phonetic(), '/ˈfaɪv/')
 
 assert.equal('خمسة', five.arabic(), 'A arabic five should be خمسة');
 assert.equal('beş', five.azerbaijani(), 'A azerbaijani five should be beş');
@@ -95,6 +100,9 @@ assert.equal(JSON.stringify(['Jackie','Tito','Jermaine','Marlon','Michael']), JS
 
 assert.equal(JSON.stringify(['Juwan Howard','Ray Jackson','Jimmy King','Jalen Rose','Chris Webber']), JSON.stringify(five.fab()), 'A fab five should be the 1991-1993 Michigan Mens Basketball Team');
 
+assert.deepEqual(five.pick('jackson'), ['Jackie','Tito','Jermaine','Marlon','Michael']);
+assert.deepEqual(five.pick('fab'), ['Juwan Howard','Ray Jackson','Jimmy King','Jalen Rose','Chris Webber']);
+
 assert.equal(five.luniz(), 'I Got 5 on It', 'A Luniz five should be the song title of their most famous hit');
 
 assert.equal(true, five.isFive(five()));
@@ -116,6 +124,12 @@ assert.equal(five + five, 10);
 assert.equal(five / five, 1);
 assert.equal(five - five, 0);
 assert.equal((five / five) * (five), five);
+
+var multipleOfFive = five.multiples()
+assert.equal(multipleOfFive(), 0);
+assert.equal(multipleOfFive(), 5);
+assert.equal(multipleOfFive(), 10);
+assert.equal(multipleOfFive(), 15);
 
 var asyncTests = 1;
 five.async(function(err, five) {

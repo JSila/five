@@ -5,6 +5,17 @@
   five.upHigh = function() { return '⁵'; };
   five.downLow = function() { return '₅'; };
   five.roman = function() { return 'V'; };
+  five.phonetic = function() { return '/ˈfaɪv/'; };
+
+  five.s = function(quantity) {
+      if (typeof quantity == 'undefined') {
+          return this.convertTo(55555);
+      }
+      return Array(this.convertTo(quantity) + this.convertTo(1)).join(five());
+  }
+
+  five.next = function() { return this.convertTo(6); }
+  five.previous = function() { return this.convertTo(4); }
 
   five.convertTo = function(anotherNumber) {
     // If you need other numbers I'd strongly suggest you call
@@ -105,6 +116,28 @@
   five.jackson = function() {
     return ['Jackie','Tito','Jermaine','Marlon','Michael'];
   };
+
+  five.pick = function(what) {
+    switch (what) {
+      case 'fab':
+        return five.fab()
+      case 'jackson':
+        return five.jackson()
+      default:
+        return [,,,,]
+      }
+  }
+
+  five.multiples = function() {
+    var start = five() - five();
+    var increment = five();
+
+    return function() {
+      var tmp = start;
+      start += increment;
+      return tmp;
+    }
+  }
 
   /**
    * References "I got 5 on it" by Luniz.
